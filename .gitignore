@@ -1,0 +1,10 @@
+# Ignore the hidden directory, which contains the assignments
+# Will use Time Machine for these files
+Hidden/
+
+# Ignore individual objects and object archives
+# (*.o and *.a).
+*.[oa]
+
+# Mac related files
+.DS_Store
