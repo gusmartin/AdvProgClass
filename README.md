@@ -1,5 +1,5 @@
 <snippet>
-## TC 2025 Advanced Programming Class
+# TC 2025 Advanced Programming Class
 
 This is a course in advanced programming using the C language. You will design and program solutions using the UNIX API along with memory management, concurrent processes & threads, and sockets.
 
@@ -7,6 +7,7 @@ This repository contains all the class examples and the assignments (to be added
 
 ## History
 Friday Jan 27 15:53 2017 -- Repository created
+
 Monday Jan 30 09:34 2017 -- Added document format & assignments folded
 
 ## Credits
