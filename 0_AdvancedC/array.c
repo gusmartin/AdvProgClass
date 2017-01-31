@@ -1,6 +1,6 @@
 /**
  * @copyright (c) 2017 Abelardo López Lagunas
- * 
+ *
  * @file    arrays.c
  *
  * @author  Abelardo López Lagunas
@@ -19,19 +19,19 @@
  *
  * Revision history:
  *          Jan 9, 2017 09:02 -- File created from original code. Added code
- *                            to show how the compiler does memory layout. 
+ *                            to show how the compiler does memory layout.
  *
  * @note    The code is meant for the TC2025 class. Those using llvm will
  *          see a lot of warnings, this is good since the code is meant
- *          top be incorrect.
+ *          to be incorrect by design.
  *
  */
 
 #include <stdio.h>                     /* Used for (f)printf() functions */
 #include <stdlib.h>                                   /* Used for exit() */
 
-const int ROWS = 2;
-const int COLS = 2;
+#define ROWS 2         // Use #defines to declare constants to
+#define COLS 2         // eliminate a warning about constant arrays
 
 int  array[ROWS] = {0,1};                 /* Declares a global array */
 int  data = 8;
@@ -46,19 +46,19 @@ int main (void){
     int  data2 = 10;
 
     printf ("Testing the assignment of the array\n");
-    printf ("array[0]= %d, array[1]= %d, array[2]= %d (incorrect)\n", array[0],
-            array[1], array[2]);
+    printf ("array[0]= %d, array[1]= %d, array[2]= %d (incorrect)\n",
+     		array[0], array[1], array[2]);
 
     printf ("\nTesting the assignment of multidimentional arrays\n");
-    printf ("barray[0][1]= %d, barray[1][0]= %d, barray[2][0]= %d (incorrect)\n",
+    printf ("brray[0][1]=%d, brray[1][0]=%d, brray[2][0]=%d (incorrect)\n",
             brray[0][1], brray[1][0], brray[2][0]);
 
 	/* See the addresses of the local variables */
 	printf ("\nThe compiler can re-arrange the layout of the variables\n");
-	printf ("Address of data1 is %p\n", &data1);
-	printf ("Address of arr   is %p\n", arr);
-	printf ("Address of data2 is %p\n", &data2);
-	
+	printf ("Address of data1 is %p\n", (void *) &data1);
+	printf ("Address of arr   is %p\n", (void *) arr);
+	printf ("Address of data2 is %p\n", (void *) &data2);
+
     /* Now test it using local variables */
     printf ("\nTesting memory allocation for local variables\n");
     printf ("arr[0]= %d, arr[1]= %d, arr[2]= %d\n", arr[0], arr[1], arr[2]);

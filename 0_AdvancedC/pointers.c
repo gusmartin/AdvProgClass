@@ -1,6 +1,6 @@
 /**
  * @copyright (c) 2017 Abelardo López Lagunas
- * 
+ *
  * @file    pointers.c
  *
  * @author  Abelardo López Lagunas
@@ -26,30 +26,32 @@
 #include <stdlib.h>                                   /* Used for exit() */
 
 int main (void){
-    
+
     int i = 10;
     int j = 100;
     int *p, *q;
 
     q = &i;                   /* Get the address of i. Note the %p */
-    printf ("The address of i(p) is %p, the content is %d\n", q, *q);
-    
+    printf ("The address of i(p) is %p, the content is %d\n", (void *) q,
+     		*q);
+
     /* Now assign pointers */
     p = q;
     printf ("The content of *(p = q) is %d\n", *p);
-    
+
     /* Basic pointer arithmetic */
-    printf ("Variable j is at address %p\n", &j);
-    
+    printf ("Variable j is at address %p\n", (void *) &j);
+
     --p;
-    printf ("Now --p(j) is %p. The content of *(--p) is %d\n", p, *p);
-    
+    printf ("Now --p(j) is %p. The content of *(--p) is %d\n", (void *) p,
+			*p);
+
     p++;
     printf ("The content of *(p++) (i) is %d\n", *p);
-    
+
     p++;
     printf ("The content of *((p++)++) is %d (garbage)\n", *p);
-    
-    
+
+
     return (EXIT_SUCCESS);
 }
