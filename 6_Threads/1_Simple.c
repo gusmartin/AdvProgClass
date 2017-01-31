@@ -28,7 +28,7 @@
 #include <unistd.h>                 // Used for getpid
 #include <pthread.h>                // for thread management
 
-void MyThread (void * arg){
+void * MyThread (void * arg){       // Function must return void *
 
   /*
    * Note that printing the thread requires an unsigned long int
@@ -40,6 +40,8 @@ void MyThread (void * arg){
 		i, getpid(), (unsigned int) pthread_self());
 	sleep (rand()%4);
   }
+
+  pthread_exit((void *) 0);   // Return void * to avoid warnings
 }
 
 int main(void){
@@ -53,10 +55,10 @@ int main(void){
   /* Create two threads and pass a string as the name for each of
    * them. Note the typecasting to void *
    */
-  code = pthread_create(&th_a, NULL,(void *) MyThread, (void *)"a");
+  code = pthread_create(&th_a, NULL, MyThread, (void *)"a");
   if (code != 0)
     printf("Failure when creating thread a %d\n", code);
-  code = pthread_create(&th_b, NULL,(void *) MyThread, (void *)"b");
+  code = pthread_create(&th_b, NULL, MyThread, (void *)"b");
   if (code != 0)
     printf("Failure when creating thread b %d\n", code);
 

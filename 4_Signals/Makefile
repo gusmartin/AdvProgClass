@@ -2,12 +2,12 @@
 #
 # File name:    Makefile
 #
-# Description:  Makefile for the fork/exec examples
+# Description:  Makefile for the signals examples
 #
 # History:
 #
-#          Wed Jan 18 11:13:03 CST 2017 -- file is created
-# 
+#          Tue Jan 31 12:14 2017 -- file is created
+#
 ###########################################################################
 #
 # Define the compiler optimization flags
@@ -22,11 +22,16 @@ TARGET_1= alarm
 TARGET_2= sig_purge
 SRC_1=    alarm.c
 SRC_2=    sig_purgechilds.c
+
 #
 # Rule definitions for target builds, again not efficient
 #
-all:
+all: alarm purge
+
+alarm:
 	$(CC) $(COPT2) -o $(TARGET_1) $(SRC_1)
+
+purge:
 	$(CC) $(COPT2) -o $(TARGET_2) $(SRC_2)
 
 debug:
@@ -38,4 +43,3 @@ clean:
 
 clobber: clean
 	rm -f $(TARGET_1) $(TARGET_2)
-	rm -fr $(TARGET_1).dSYM $(TARGET_2).dSYM

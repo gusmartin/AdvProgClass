@@ -85,7 +85,6 @@ void * thr_fn2(void *arg)
 /* Main entry point */
 int main(void)
 {
-    int         err;
     pthread_t   tid1, tid2;
     struct foo  *fp;
 

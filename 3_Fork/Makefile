@@ -6,8 +6,8 @@
 #
 # History:
 #
-#          Wed Jan 18 11:13:03 CST 2017 -- file is created
-# 
+#          Tue Jan 31 11:41 2017-- file is created
+#
 ###########################################################################
 #
 # Define the compiler optimization flags
@@ -29,10 +29,18 @@ SRC_4=    4_multiple.c
 #
 # Rule definitions for target builds, again not efficient
 #
-all:
+all: fork fork_exec_1 fork_exec_2 multiple
+
+fork:
 	$(CC) $(COPT2) -o $(TARGET_1) $(SRC_1)
+
+fork_exec_1:
 	$(CC) $(COPT2) -o $(TARGET_2) $(SRC_2)
+
+fork_exec_2:
 	$(CC) $(COPT2) -o $(TARGET_3) $(SRC_3)
+
+multiple:
 	$(CC) $(COPT2) -o $(TARGET_4) $(SRC_4)
 
 debug:
@@ -46,5 +54,3 @@ clean:
 
 clobber: clean
 	rm -f $(TARGET_1) $(TARGET_2) $(TARGET_3) $(TARGET_4)
-	rm -fr $(TARGET_1).dSYM $(TARGET_2).dSYM
-	rm -fr $(TARGET_3).dSYM $(TARGET_4).dSYM

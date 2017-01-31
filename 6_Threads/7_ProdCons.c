@@ -32,7 +32,7 @@
  * maximum number of elements to produce and the end of the data stream
  * that tells the consumer that no more data will come in.
  */
-const int BUFFER_SIZE =  4;
+#define   BUFFER_SIZE    4  // Use #define to avoid warnings
 const int LIMIT       = -1;
 const int COUNT       = 11;
 

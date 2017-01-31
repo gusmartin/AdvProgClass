@@ -29,9 +29,10 @@
 #include <stdlib.h>
 #include <pthread.h>                          // For thread management
 
-// Declare global constants and the Mutex
-const unsigned int MAXTHREADS=4;
-int sumTotal;
+// Use #define for the number of threads to remove a warning
+#define MAXTHREADS 4
+
+int sumTotal;                  // Declare global constants and the Mutex.
 pthread_mutex_t mymutex=PTHREAD_MUTEX_INITIALIZER;
 
 /*

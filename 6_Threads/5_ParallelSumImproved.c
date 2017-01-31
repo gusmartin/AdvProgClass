@@ -27,8 +27,8 @@
 #include <pthread.h>                         // For thread management
 #include <assert.h>                          // For assertion management
 
-/* Define the maximum number of threads as a constant */
-const unsigned int MAXTHREADS=4;
+// Define the maximum number of threads using #define to avoid a warning
+#define MAXTHREADS 4
 
 /*
  * Each thread computes a partial sum and returns it when the thread
