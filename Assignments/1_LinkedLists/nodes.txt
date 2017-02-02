@@ -1,9 +1,10 @@
 #
 # This file contains the test data for the linked lists code the
 # format for each field is
-#                         number string
+#                         number string (only letters, no spaces)
 #
 
+0 GrandpaQuackmore
 1 Huey
 2 Dewey
 3 Louie
@@ -12,3 +13,4 @@
 6 Daisy
 7 Webbiegail
 8 LudwigVonDrake
+9 GrandmaElvira

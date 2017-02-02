@@ -75,7 +75,7 @@ int GetInt (FILE *fp) {
     } while (!isdigit(c) && !feof(fp));
     
     if (feof(fp)){
-        return (-1);
+       return (EOF);
     } else {
         /* Found 1st digit, begin conversion until a non-digit is found */
         i = 0;
@@ -132,6 +132,12 @@ char * GetString (FILE *fp){
       }
       buffer[i] = '\0';             /* Note how string may be truncated */
 
+      // If the last line is read, the end of file has not been reached
+      c = getc (fp);               // See if it was the last line
+      if (c != EOF) {
+         ungetc(c, fp);            // Not the end put it back
+      }
+      
       // Now make a copy fo the buffer and make it into a string
       return strdup(buffer);
    }
