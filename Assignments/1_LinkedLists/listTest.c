@@ -84,15 +84,9 @@ int main (int argc, const char * argv[]) {          // Program entry point
         } else {
             
             while (!feof(fp)){
-                
-              // Not asumme the order in which the functions are going to be call
-              // Warranty by evaluating before calling NewItem function
-              // @Isaac @Martin
-              int number = GetInt(fp);
-              char *theString = GetString(fp);
 
                // Allocate memory for new item from the input file
-               aNode_p = NewItem(number,theString);
+               aNode_p = NewItem(GetInt(fp), GetString(fp));
                 
 #ifdef DEBUG
                 printf("Integer read is %d:\n", aNode_p->number);
