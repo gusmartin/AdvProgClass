@@ -37,7 +37,7 @@
 #include <stdlib.h>              /* Used for getc() and feof() functions */
 #include <ctype.h>                    /* Used for the isdigit() function */
 #include <stdio.h>                       /* Used to handle the FILE type */
-#include <strings.h>                                /* Used for strdup() */
+#include <string.h>                                /* Used for strdup() */
 #include <assert.h>                       /* Used for the asser function */
 #include "FileIO.h"                                   /* Function header */
 
