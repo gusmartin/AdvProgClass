@@ -6,9 +6,12 @@ This is a course in advanced programming using the C language. You will design a
 This repository contains all the class examples and the assignments (to be added later). The code will be migrated from the Schoology class site, but for the moment the code is in both places. However, be advised that the Github version is up to date and that the code in Schoology will be removed later on the semester.
 
 ## History
-Friday Jan 27 15:53 2017 -- Repository created
+Friday    Jan 27 15:53 2017 -- Repository created
 
-Monday Jan 30 09:34 2017 -- Added document format & assignments folded
+Monday    Jan 30 09:34 2017 -- Added document format & assignments folded
+
+Wednesday Feb 08 12:00 2017 -- Fixed bug introduced by wrong header file name
+
 
 ## Credits
 
