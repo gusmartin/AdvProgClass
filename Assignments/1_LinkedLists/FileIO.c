@@ -63,7 +63,7 @@
 int GetInt (FILE *fp) {
     int	c,i;		 /* Character read and integer representation of it */
     int sign = 1;
-    
+
     do {
         c = getc (fp); 	                           /* Get next character */
         if ( c == '#' )	                             /* Skip the comment */
@@ -73,7 +73,7 @@ int GetInt (FILE *fp) {
         if ( c == '-')
             sign = -1;
     } while (!isdigit(c) && !feof(fp));
-    
+
     if (feof(fp)){
        return (EOF);
     } else {
@@ -83,7 +83,13 @@ int GetInt (FILE *fp) {
             i = (i*10) + (c - '0');
             c = getc (fp);
         }
-        
+
+     // If the last line is read, the end of file has not been reached
+      c = getc (fp);               // See if it was the last line
+      if (c != EOF) {
+         ungetc(c, fp);            // Not the end put it back
+      }
+
         return (i*sign);
     }
 }
@@ -137,7 +143,7 @@ char * GetString (FILE *fp){
       if (c != EOF) {
          ungetc(c, fp);            // Not the end put it back
       }
-      
+
       // Now make a copy fo the buffer and make it into a string
       return strdup(buffer);
    }
