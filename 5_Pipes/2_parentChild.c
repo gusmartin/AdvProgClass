@@ -45,14 +45,14 @@ int main(void)
         perror("fork error");
     } else if (pid > 0) {
         close(fd[0]);           /* parent */
-		sleep(5);
+        sleep(5);
         write(fd[1], "hello world\n", 12);
     } else {                    /* child */
         close(fd[1]);
-		printf ("Waiting...\n");
+        printf ("Waiting...\n");
         n = read(fd[0], line, MAXLINE);
         write(STDOUT_FILENO, line, n);
     }
 
-	return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 }

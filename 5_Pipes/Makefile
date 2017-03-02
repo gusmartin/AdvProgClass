@@ -34,19 +34,19 @@ SRC_5=    5_complexPipes.c
 #
 all: simple parent parallelAdd correctAdd complex
 
-simple:
+simple: 1_simplePipe.c
 	$(CC) $(COPT2) -o $(TARGET_1) $(SRC_1)
 
-parent:
+parent: 2_parentChild.c
 	$(CC) $(COPT2) -o $(TARGET_2) $(SRC_2)
 
-parallelAdd:
+parallelAdd: 3_parallelAdd.c
 	$(CC) $(COPT2) -o $(TARGET_3) $(SRC_3)
 
-correctAdd:
+correctAdd: 4_reallyParallelAdd.c
 	$(CC) $(COPT2) -o $(TARGET_4) $(SRC_4)
 
-complex:
+complex: 5_complexPipes.c
 	$(CC) $(COPT2) -o $(TARGET_5) $(SRC_5)
 
 debug:

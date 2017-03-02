@@ -31,20 +31,20 @@
 
 /* Declares the function prototypes */
 int  addVector(int v[], int length);
-void errorExit(char *s);
 
 int main (void){
 
   int   array[N][N] = {{1, 1, 1},
-					   {2, 2, 2},
-					   {3, 3, 3}};
+		       {2, 2, 2},
+		       {3, 3, 3}};
   int   i, row, sum = 0;
   int   pipefd[2];
 
   /* Create a simple pipe */
-  if (pipe (pipefd) < 0)
-	errorExit("Error creating the pipe");
-
+  if (pipe (pipefd) < 0){
+	perror("Error creating the pipe");
+  }
+  
   /*
    * Create N child processes, each adds a row of the matrix
    * Note how the parent loops three times but does nothing.
@@ -52,10 +52,12 @@ int main (void){
   for (i = 0; i < N; i++){
 	if (fork() == 0) {
 	  row = addVector(array[i], N);
+	  
 	  if (write (pipefd[1], &row, sizeof(int)) == -1)
-		errorExit("Error writing the pipe");
+	    perror("Error writing the pipe");
 	  else
-		printf ("Child process %d finished working\n", getpid());
+	    printf ("Child process %d finished working\n", getpid());
+
 	  return (EXIT_SUCCESS);  /* child is done, terminate*/
 	} else {
 	  /*
@@ -64,9 +66,9 @@ int main (void){
 	   * sums and generates the total.
 	   */
 	  if (read (pipefd[0], &row, sizeof(int)) == -1)
-		errorExit("Error reading the pipe");
+	    perror("Error reading the pipe");
 	  else
-		printf ("Parent read %d\n", row);
+	    printf ("Parent read %d\n", row);
 	  sum += row;
 	}
   }
@@ -98,22 +100,4 @@ int  addVector(int v[], int length){
   sleep (random()%4);
 
   return (sum);
-}
-
-/*
- *
- *  Function: errorExit
- *
- *  Purpose:  This functions receives a string as an input parameter
- *            The string is printed out and then the program is
- *            aborted
- *
- *  Parameters:
- *            input #1  Pointer to the string
- *
- */
-void errorExit(char *s){
-
-  fprintf (stderr, "\n ERROR: %s program will abort\n", s);
-  exit (EXIT_FAILURE);
 }

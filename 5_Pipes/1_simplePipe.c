@@ -18,6 +18,7 @@
  *
  * Revision history:
  *          Jan 19, 2017 09:35 -- File created
+ *          Mar 02, 2017 14:47 -- Added perror function calls
  *
  * @note    Meant as an example for the TC2025 students
  *
@@ -31,39 +32,36 @@ const int STDOUT = 1;              // Standard output
 
 int main (void){
 
-	int  pipefd[2], n;            // One pipe, two directions
-	char buffer[50];              // Small character buffer
+        int  pipefd[2], n;         // One pipe, two directions
+        char buffer[50];           // Small character buffer
 
-	for (int i = 0; i < 50 ; i++)
-	  buffer[i] = 'j';
+        for (int i = 0; i < 50 ; i++)
+          buffer[i] = 'j';
 
-	/* Create a simple pipe */
-	if (pipe (pipefd) < 0){
-	  printf("Error creating the pipe");
-	  exit(EXIT_FAILURE);
-	}
-	/*
-	 * Show the file descriptor numbers for the read and write
-	 * ports of the pipe
-	 */
-	printf ("read fd: %d. write fd: %d\n", pipefd[0], pipefd[1]);
-	if (write (pipefd[1], "hello, this is a string\n", 24) != 24){
-	  printf("Error writing to the pipe");
-	  exit(EXIT_FAILURE);
-	}
+        /* Create a simple pipe */
+        if (pipe (pipefd) < 0){
+          perror("Error creating the pipe");
+        }
+        /*
+         * Show the file descriptor numbers for the read and write
+         * ports of the pipe
+         */
+        printf ("read fd: %d. write fd: %d\n", pipefd[0], pipefd[1]);
+        if (write (pipefd[1], "hello, this is a string\n", 24) != 24){
+          perror("Error writing to the pipe");
+        }
 
-	/* Now read n*4 bytes from the pipe, note the use of sizeof */
-	n = read (pipefd[0], buffer, sizeof(buffer));
-	printf ("N is %d\n",n);
+        /* Now read n*4 bytes from the pipe, note the use of sizeof */
+        n = read (pipefd[0], buffer, sizeof(buffer));
+        printf ("N is %d\n",n);
 
-	if (n <= 0){
-	  printf("Error reading from the pipe");
-	  exit(EXIT_FAILURE);
-	}
+        if (n <= 0){
+          perror("Error reading from the pipe");
+        }
 
-	/* Now print the buffer to the console, i.e. stdout */
-	write (STDOUT, buffer, n);
+        /* Now print the buffer to the console, i.e. stdout */
+        write (STDOUT, buffer, n); 
 
-	return EXIT_SUCCESS;
+        return EXIT_SUCCESS;
 }
 
