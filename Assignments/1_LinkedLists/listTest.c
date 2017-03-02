@@ -86,7 +86,16 @@ int main (int argc, const char * argv[]) {          // Program entry point
             while (!feof(fp)){
 
                // Allocate memory for new item from the input file
-               aNode_p = NewItem(GetInt(fp), GetString(fp));
+               /* Note: evaluation order of function arguments is
+                * implementation dependent and since both functions read
+                * from the SAME input file this can cause problems in some
+                * UNIX flavors (e.g. linux/gcc) so serialize the file
+                * access
+               */
+               int number = GetInt(fp);
+               char * string = GetString(fp);
+               
+               aNode_p = NewItem(number, string);
                 
 #ifdef DEBUG
                 printf("Integer read is %d:\n", aNode_p->number);
