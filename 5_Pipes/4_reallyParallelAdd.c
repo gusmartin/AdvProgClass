@@ -25,9 +25,10 @@
  *
  */
 
-#include <stdio.h>                     // For printf(), exit() & exit values
-#include <stdlib.h>                    // For exit conditions
-#include <unistd.h>                    // For pipe constants
+#include <stdio.h>  // For printf(), exit() & exit values
+#include <stdlib.h> // For exit conditions
+#include <unistd.h> // For pipe constants
+#include <time.h>   // For time() [seeding srandom()]
 
 /* Controls the concurrency of the program*/
 #define N 3         // Use this instead of a const to avoid a warning
@@ -42,7 +43,10 @@ int main (void){
 		       {3, 3, 3}};
   int   i, row, sum = 0;
   int   pipefd[2];
-  
+
+  /* Seed the random num generator */
+  srandom(time(NULL));
+    
   /* Create a simple pipe */
   if (pipe (pipefd) < 0)
     perror("Error creating the pipe");
@@ -52,16 +56,16 @@ int main (void){
    * Note how the parent loops three times but does nothing.
    */
   for (i = 0; i < N; i++){
-	if (fork() == 0) {
-	  row = addVector(array[i], N);
-	  
-	  if (write (pipefd[1], &row, sizeof(int)) == -1)
-	    perror("Error writing the pipe");
-	  else
-	    printf ("Child process %d finished working\n", getpid());
-	  
-	  return (EXIT_SUCCESS);  /* child is done, terminate*/
-	}
+    if (fork() == 0) {
+      row = addVector(array[i], N);
+      
+      if (write (pipefd[1], &row, sizeof(int)) == -1)
+	perror("Error writing the pipe");
+      else
+	printf ("Child process %d finished working\n", getpid());
+      
+      return (EXIT_SUCCESS);  /* child is done, terminate*/
+    }
   }	
   /*
    * This is the parent process, it suspends if the data is not
@@ -71,12 +75,12 @@ int main (void){
   printf ("Parent will read data\n");
 
   for (int i = 0; i < N; i++){
-	if (read (pipefd[0], &row, sizeof(int)) == -1)
-	  perror("Error reading the pipe");
-	else
-	  printf ("Parent read %d\n", row);
-	
-	sum += row;
+    if (read (pipefd[0], &row, sizeof(int)) == -1)
+      perror("Error reading the pipe");
+    else
+      printf ("Parent read %d\n", row);
+    
+    sum += row;
   }
   
   printf ("The total is %d\n", sum);
@@ -101,10 +105,10 @@ int  addVector(int v[], int length){
   int i, sum;
 
   for (i = 0, sum = 0; i < length; i++)
-	sum += v[i];
-
+    sum += v[i];
+  
   sleep (random() % 4);
-
+  
   return (sum);
 }
 

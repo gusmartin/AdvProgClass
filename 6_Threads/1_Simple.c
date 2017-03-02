@@ -36,9 +36,9 @@ void * MyThread (void * arg){       // Function must return void *
    * which is returned by pthread_self()
    */
   for (int i= 0; i < 5; i++){
-	printf ("Thread: %s  i=%d pid is %d self is %u\n",(char *) arg,
-		i, getpid(), (unsigned int) pthread_self());
-	sleep (rand()%4);
+    printf ("Thread: %s  i=%d pid is %d self is %u\n",(char *) arg,
+            i, getpid(), (unsigned int) pthread_self());
+    sleep (rand()%4);
   }
 
   pthread_exit((void *) 0);   // Return void * to avoid warnings
@@ -58,6 +58,7 @@ int main(void){
   code = pthread_create(&th_a, NULL, MyThread, (void *)"a");
   if (code != 0)
     printf("Failure when creating thread a %d\n", code);
+
   code = pthread_create(&th_b, NULL, MyThread, (void *)"b");
   if (code != 0)
     printf("Failure when creating thread b %d\n", code);
