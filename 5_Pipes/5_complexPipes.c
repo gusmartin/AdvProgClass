@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
 	ret = pipe(proc_pipes[i]);
 	if (ret) {
 	  perror("Error creating pipe");
-	  abort();
 	}
   }
 

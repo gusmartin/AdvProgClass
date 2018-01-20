@@ -36,7 +36,7 @@ void * MyThread (void * arg){       // Function must return void *
    * which is returned by pthread_self()
    */
   for (int i= 0; i < 5; i++){
-    printf ("Thread: %s  i=%d pid is %d self is %u\n",(char *) arg,
+    printf ("Thread: %s  i=%d pid is %u self is %u\n",(char *) arg,
             i, getpid(), (unsigned int) pthread_self());
     sleep (rand()%4);
   }
@@ -48,7 +48,6 @@ int main(void){
 
   int       code;             // Return code from the function
   pthread_t th_a, th_b;       // Define threads a & b
-
 
   srand (time(NULL));         // Use the current time as the seed
 

@@ -19,8 +19,8 @@ Some parts of the code have been downloaded from the Web (Stack Overflow, Textbo
 
 ## Class information
 
-Location: Aulas I Room 126
-Meeting days: Mondays & Thursdays 13:00 - 14:30
+Location: Aulas I Room 127
+Meeting days: Tuesdays & Fridays 10:00 - 11:30
 
 ## Author
 

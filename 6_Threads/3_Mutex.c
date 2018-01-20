@@ -64,17 +64,23 @@ int main(void) {
   	/*
   	 * Can use try_lock instead of lock of the thread wants to do useful
   	 * work instead of blocking when the lock is not available.
-  	 */
-     while(pthread_mutex_trylock(&mymutex)){
-        printf("|");     // Show waiting thread, this may be too noisy
+  	 *
+       while(pthread_mutex_trylock(&mymutex)){
+       printf("|");     // Show waiting thread, this may be too noisy
         fflush(stdout);  // at the output
      }
-	   myglobal++;
-	pthread_mutex_unlock(&mymutex);
-
-	printf("o");
-	fflush(stdout);
-	sleep(1);
+	*/
+    pthread_mutex_lock(&mymutex);
+      myglobal++;
+      printf("-");
+      fflush(stdout);           // Make sure printf outputs its buffer
+      sleep(1);
+    pthread_mutex_unlock(&mymutex);
+    
+    
+    printf("o");
+    fflush(stdout);
+    sleep(1);
   }
 
   if ( pthread_join ( mythread, NULL )){

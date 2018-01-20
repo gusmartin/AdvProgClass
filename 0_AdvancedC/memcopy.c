@@ -42,7 +42,7 @@ int main(void){
 		printf("%i\n", dest[i]);
 
 	memcpy (dest, src, sizeof(int)*SRC_SIZE);
-// Tyr the following:
+// Try the following:
 	//memcpy (&dest[6], src, sizeof(int)*SRC_SIZE);
 
    	printf("Array after memcpy\n");
