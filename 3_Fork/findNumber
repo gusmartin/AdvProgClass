@@ -16,6 +16,9 @@
  * Revision history:
  *          Mon 12 Feb 2018  -- Created file
  *
+ * Restrictions:
+ *          If parent finds the number it doesn´t wait for the childs
+ *
  *
  */
 
@@ -55,12 +58,14 @@ int main(void){
 		
 			for(int j = (range/processes)*i; j <= ((range/processes)*(i+1))-1; j++){ //these are the formulas to divide the search in equal parts
 				
+				/* if found number notify the parent */
 				if(j == number)
 					return 2;
 				
 			}
 			
 			/* this means number not found in this area*/
+			/* this return is key, because it ensures the child stays in this if*/
 			return 3;
 		}
 			
