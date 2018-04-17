@@ -4,9 +4,9 @@
    argument, at port 1234. Once connected, copy everything on
    stdin to the socket, then exit. */
 
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <netinet/in.h>
+#include <arpa/inet.h> // for ipv4
+#include <netdb.h> // calls dns
+#include <netinet/in.h> // routines that the network handles
 #include <stdio.h>
 #include <stdlib.h>            /* For exit() */
 #include <string.h>            /* For memcpy */
