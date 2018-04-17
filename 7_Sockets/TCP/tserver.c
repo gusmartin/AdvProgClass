@@ -35,13 +35,13 @@ int main(void) {
     if (bind(sock, (struct sockaddr *) &address, sizeof(address)))
         die("bind");
 
-    if (listen(sock, 5))
+    if (listen(sock, 5)) // maximum 5 connections pending
         die("listen");
 
     while ((conn = accept(sock, (struct sockaddr *) &address,
-                          &addrLength)) >= 0) {
+                          &addrLength)) >= 0) { // if >0 valid number, while correct data 
         printf("---- getting data\n");
-        copyData(conn, 1);
+        copyData(conn, 1); // copy until no more  from socket to stdout
         printf("---- done\n");
         close(conn);
     }
